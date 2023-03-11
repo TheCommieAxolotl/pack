@@ -1,0 +1,49 @@
+{
+    "name": "create-pack",
+    "version": "0.0.1",
+    "description": "A snappy start for your next big thing.",
+    "keywords": [
+        "create",
+        "npm",
+        "bootstrap",
+        "cli",
+        "rollup",
+        "vite",
+        "webpack",
+        "typescript"
+    ],
+    "main": "dist/index.js",
+    "type": "module",
+    "bin": {
+        "pack": "dist/index.js"
+    },
+    "author": "TheCommieAxolotl",
+    "license": "MIT",
+    "files": [
+        "dist/**.*",
+        "templates/**.*"
+    ],
+    "scripts": {
+        "build": "rollup -c",
+        "dev": "rollup -c -w",
+        "test": "node ."
+    },
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^24.0.1",
+        "@rollup/plugin-json": "^6.0.0",
+        "@rollup/plugin-node-resolve": "^15.0.1",
+        "@rollup/plugin-terser": "^0.4.0",
+        "@rollup/plugin-typescript": "^11.0.0",
+        "@types/chalk-animation": "^1.6.1",
+        "@types/inquirer": "^9.0.3",
+        "@types/node": "^18.15.0",
+        "chalk": "^5.2.0",
+        "chalk-animation": "^2.0.3",
+        "inquirer": "^9.1.4",
+        "ora": "^6.1.2",
+        "rollup": "^3.19.1",
+        "rollup-plugin-preserve-shebangs": "^0.2.0",
+        "tslib": "^2.5.0",
+        "typescript": "^4.9.5"
+    }
+}
