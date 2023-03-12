@@ -1,7 +1,7 @@
 export const createPackageJSON = (params: {
     name: string;
     location: string;
-    bundler: 'rollup' | 'vite' | 'webpack' | 'vanilla';
+    template: 'rollup' | 'vite' | 'webpack' | 'vanilla';
     tools: string[];
     typescript: boolean;
     installDependencies: boolean;
@@ -19,7 +19,7 @@ export const createPackageJSON = (params: {
         devDependencies: {},
     };
 
-    switch (params.bundler) {
+    switch (params.template) {
         case 'rollup':
             json.scripts = {
                 build: 'rollup -c',
