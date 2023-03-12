@@ -20,8 +20,8 @@
     "author": "TheCommieAxolotl",
     "license": "MIT",
     "files": [
-        "dist/**.*",
-        "templates/**.*"
+        "dist",
+        "templates"
     ],
     "scripts": {
         "build": "rollup -c",
