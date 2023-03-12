@@ -29,7 +29,7 @@ pack currently supports a few common bundling options.
 
 ## How do I get started?
 ```bash
-pnpm add -g create-pack@latest
+pnpm add -g create-npack@latest
 ```
 
 ## How do I use pack?
