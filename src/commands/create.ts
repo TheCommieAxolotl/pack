@@ -5,8 +5,8 @@ import process from 'node:process';
 import path from 'node:path';
 import fs from 'node:fs';
 
+import nanospinner from 'nanospinner';
 import chalk from 'chalk';
-import ora from 'ora';
 
 import { getPackageManager, installDependencies } from '../utils/manager';
 import { gap, separator, wordmark } from '../utils/logger';
@@ -115,22 +115,22 @@ export default async () => {
 
     const templateName = `${results.bundler}/${results.typescript ? 'typescript' : 'javascript'}`;
 
-    const tempSpinner = ora(`Copying template files...`).start();
+    const tempSpinner = nanospinner.createSpinner(`Copying template files...`).start();
     await copy(path.resolve(__dirname, '../templates', templateName), location);
-    tempSpinner.succeed('Template files copied');
+    tempSpinner.success({ text: 'Template files copied' });
 
-    const pkjSpinner = ora(`Creating package.json...`).start();
+    const pkjSpinner = nanospinner.createSpinner(`Creating package.json...`).start();
     await promises.writeFile(path.resolve(location, 'package.json'), JSON.stringify(json, null, 4));
-    pkjSpinner.succeed('package.json created');
+    pkjSpinner.success({ text: 'package.json created' });
 
     const manager = getPackageManager();
 
     if (results.installDependencies) {
-        const spinner = ora('Installing dependencies...').start();
+        const spinner = nanospinner.createSpinner('Installing dependencies...').start();
 
         await installDependencies(location, manager);
 
-        spinner.succeed('Dependencies installed');
+        spinner.success({ text: 'Dependencies installed' });
     }
 
     gap();

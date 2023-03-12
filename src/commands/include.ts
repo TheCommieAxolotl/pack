@@ -5,8 +5,8 @@ import process from 'node:process';
 import path from 'node:path';
 import fs from 'node:fs';
 
+import nanospinner from 'nanospinner';
 import chalk from 'chalk';
-import ora from 'ora';
 
 import { gap } from '../utils/logger';
 
@@ -34,7 +34,7 @@ export default async () => {
 
     const answers = await inquirer.prompt(questions);
 
-    const spinner = ora('Writing to package.json').start();
+    const spinner = nanospinner.createSpinner('Writing to package.json').start();
 
     const packageJSON = JSON.parse(pkj);
 
@@ -49,7 +49,7 @@ export default async () => {
 
     await promises.writeFile(path.resolve(process.cwd(), 'package.json'), JSON.stringify(packageJSON, null, 4));
 
-    spinner.succeed('Wrote to package.json');
+    spinner.success({ text: 'Wrote to package.json' });
 
     gap();
 
