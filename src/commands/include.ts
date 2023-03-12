@@ -8,7 +8,7 @@ import fs from 'node:fs';
 import chalk from 'chalk';
 import ora from 'ora';
 
-import { gap, separator, wordmark } from '../utils/logger';
+import { gap } from '../utils/logger';
 
 export default async () => {
     if (!fs.existsSync(path.resolve(process.cwd(), 'package.json'))) {
@@ -18,7 +18,10 @@ export default async () => {
 
     const pkj = await promises.readFile(path.resolve(process.cwd(), 'package.json'), 'utf-8');
 
-    const alwaysInclude = ['dist'];
+    const outExists = fs.existsSync(path.resolve(process.cwd(), 'out'));
+    const distExists = fs.existsSync(path.resolve(process.cwd(), 'dist'));
+    const buildExists = fs.existsSync(path.resolve(process.cwd(), 'build'));
+    const publicExists = fs.existsSync(path.resolve(process.cwd(), 'public'));
 
     const questions = [
         {
@@ -36,7 +39,13 @@ export default async () => {
     const packageJSON = JSON.parse(pkj);
 
     packageJSON.files = answers.whitelist.split(',').map((file) => file.trim());
-    packageJSON.files = [...packageJSON.files, ...alwaysInclude];
+    packageJSON.files = [
+        ...packageJSON.files,
+        ...(outExists ? ['out'] : []),
+        ...(distExists ? ['dist'] : []),
+        ...(buildExists ? ['build'] : []),
+        ...(publicExists ? ['public'] : []),
+    ];
 
     await promises.writeFile(path.resolve(process.cwd(), 'package.json'), JSON.stringify(packageJSON, null, 4));
 
