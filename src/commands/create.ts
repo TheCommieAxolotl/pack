@@ -30,13 +30,13 @@ const promptName = async () => {
     return name;
 };
 
-const promptLocation = async () => {
+const promptLocation = async (name: string) => {
     const questions = [
         {
             type: 'input',
             name: 'location',
             message: 'Where do you want to create the package?',
-            default: `./${path.basename(process.cwd())}`,
+            default: `./${name}`,
         },
     ];
 
@@ -152,7 +152,7 @@ export default async () => {
     const optionalTools = process.argv.slice(4);
 
     const name = await promptName();
-    const location = await promptLocation();
+    const location = await promptLocation(name);
 
     let template;
 
