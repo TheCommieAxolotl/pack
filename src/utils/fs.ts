@@ -1,5 +1,5 @@
-import promises from "node:fs/promises";
-import fs from "node:fs";
+import promises from 'node:fs/promises';
+import fs from 'node:fs';
 
 export const empty = async (path: string) => {
     try {
